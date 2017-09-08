@@ -37,6 +37,11 @@ TEST_CASE("StudentContainers can be be used as a container", "[StudentContainer]
 
         REQUIRE(sc.GetSize() == 2);
         REQUIRE(!(sc.GetStudentByIndex(0) == s1));
+
+        sc.RemoveByRoll("Roll21");
+
+        REQUIRE(sc.GetSize() == 1);
+        REQUIRE(!(sc.GetStudentByIndex(0) == s2));
     }
 
     SECTION("StudentContainer throws exceptions when used erraneously.") {
@@ -53,7 +58,7 @@ TEST_CASE("StudentContainers can be be used as a container", "[StudentContainer]
     }
 }
 
-TEST_CASE("StudentContainer provides access via an iterator.") {
+TEST_CASE("StudentContainer provides access via an iterator.", "[StudentContainer]") {
     Student s1 {"Person Lastname", "Roll20"};
     Student s2 {"SecondPerson Lastname", "Roll21"};
     Student s3 {"ThirdPerson Lastname", "Roll22"};
@@ -70,7 +75,7 @@ TEST_CASE("StudentContainer provides access via an iterator.") {
     REQUIRE(!iter.HasNext());
 }
 
-TEST_CASE("StudentContainers can be serialized and deserialized.") {
+TEST_CASE("StudentContainers can be serialized and deserialized.", "[StudentContainer]") {
     Student s1 {"Person Lastname", "Roll20"};
     Student s2 {"SecondPerson Lastname", "Roll21"};
     Student s3 {"ThirdPerson Lastname", "Roll22"};

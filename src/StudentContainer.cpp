@@ -80,6 +80,8 @@ std::ostream& operator<<(std::ostream& out, const StudentContainer& studentConta
     for (const auto& s : studentContainer.students) {
         out << s;
     }
+
+    return out;
 }
 
 std::istream& operator>>(std::istream& in, StudentContainer& studentContainer)
@@ -94,6 +96,8 @@ std::istream& operator>>(std::istream& in, StudentContainer& studentContainer)
             break;
         }
     }
+
+    return in;
 }
 
 bool StudentContainer::operator==(const StudentContainer& other)
@@ -102,6 +106,14 @@ bool StudentContainer::operator==(const StudentContainer& other)
         return std::equal(students.begin(), students.end(), other.students.begin());
     } else {
         return false;
+    }
+}
+
+void StudentContainer::RemoveByRoll(const std::string& roll)
+{
+    auto found = std::find_if(students.begin(), students.end(), [&](Student& s) { return s.GetRoll() == roll; });
+    if (found < students.end()) {
+        students.erase(found);
     }
 }
 

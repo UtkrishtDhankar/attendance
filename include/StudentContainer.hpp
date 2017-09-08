@@ -15,6 +15,7 @@ public:
 
     void                        AddStudent(const Student& student);
     void                        RemoveStudent(const Student& student);
+    void                        RemoveByRoll(const std::string& roll);
 
     Student&                    GetStudentByRoll(const std::string& roll);
     Student&                    GetStudentByIndex(size_t index);
